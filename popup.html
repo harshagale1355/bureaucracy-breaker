@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bureaucracy Breaker</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📋 Bureaucracy Breaker</h1>
+            <p>Transform forms into conversations</p>
+            <div class="health-status">
+                <span class="status-indicator unhealthy" id="healthIndicator"></span>
+                <span class="status-text" id="statusText">Checking API...</span>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage"></div>
+
+        <!-- Loading Spinner -->
+        <div id="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 10px; font-size: 13px; color: #667eea;">Processing...</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Mode Selection -->
+            <div id="modeSelection">
+                <h3 style="color: #333; margin-bottom: 15px; font-size: 16px; text-align: center;">Choose Form Type</h3>
+                <div class="mode-buttons">
+                    <button class="mode-btn" id="pdfModeBtn">
+                        <div class="mode-icon">📄</div>
+                        <div class="mode-title">PDF Form</div>
+                        <div class="mode-desc">Upload and fill PDF forms</div>
+                    </button>
+                    <button class="mode-btn" id="websiteModeBtn">
+                        <div class="mode-icon">🌐</div>
+                        <div class="mode-title">Website Form</div>
+                        <div class="mode-desc">Scan and fill web forms</div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PDF Upload Section -->
+            <div id="uploadSection" style="display: none;">
+                <div class="back-btn" id="backFromPdf">← Back</div>
+                <h3 style="color: #333; margin-bottom: 10px; font-size: 14px;">Upload Your PDF Form</h3>
+                <div class="upload-area" id="uploadArea">
+                    <div class="icon">📄</div>
+                    <p>Click or drag a PDF form here</p>
+                    <p style="font-size: 11px; color: #999; margin-top: 5px;">Supported: PDF forms with fillable fields</p>
+                </div>
+                <input type="file" id="pdfInput" accept=".pdf">
+                <button class="btn btn-primary" id="uploadBtn" style="display: none;">
+                    🚀 Process PDF & Start
+                </button>
+            </div>
+
+            <!-- Website Form Section -->
+            <div id="websiteSection" style="display: none;">
+                <div class="back-btn" id="backFromWebsite">← Back</div>
+                <h3 style="color: #333; margin-bottom: 10px; font-size: 14px;">Scan Website Form</h3>
+                <div class="info-box">
+                    <p style="font-size: 13px; margin-bottom: 10px;">
+                        📌 Make sure you're on a page with a form, then click the button below to detect it.
+                    </p>
+                </div>
+                <button class="btn btn-primary" id="scanFormBtn">
+                    🔍 Scan Form on This Page
+                </button>
+                <div id="formDetectionResult" style="display: none; margin-top: 15px;">
+                    <div class="success-box">
+                        <p id="detectionMessage"></p>
+                    </div>
+                    <button class="btn btn-success" id="startWebsiteFormBtn">
+                        ✨ Start Filling Form
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div id="chatSection" style="display: none;">
+                <div class="back-btn" id="backFromChat">← Back</div>
+                <h3 style="color: #333; margin-bottom: 10px; font-size: 14px;">Answer Questions</h3>
+                <div id="chatContainer"></div>
+                <div class="progress-bar">
+                    <div id="progressFill"></div>
+                </div>
+                <div id="progressText">0% Complete</div>
+                <div id="imageUploadContainer" style="display: none;">
+                    <p style="font-size: 12px; margin-bottom: 8px; color: #92400e;">
+                        📸 This field needs a signature or photo upload:
+                    </p>
+                    <input type="file" id="imageInput" accept=".png,.jpg,.jpeg,.gif">
+                    <button class="btn btn-secondary" id="imageUploadBtn" style="margin-top: 8px;">
+                        📷 Upload Image
+                    </button>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="answerInput" placeholder="Type your answer...">
+                    <button class="send-btn" id="sendBtn">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <button class="footer-btn" id="downloadBtn" style="display: none;">⬇️ Download PDF</button>
+            <button class="footer-btn" id="fillWebFormBtn" style="display: none;">✅ Fill Website Form</button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
